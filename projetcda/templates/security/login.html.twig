@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Me connecter{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .login-container {
+            background-image: url('{{ asset('image/IMG_3137.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="login-container">
+    <div class="login-form">
+        <h1>Veuillez remplir les champs</h1>
+        <form action="{{ path('app_login') }}" method="post">
+            <label for="username">Email d'utilisateur</label>
+            <input type="text" id="username" name="_username" required>
+
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="_password" required>
+
+            <button type="submit">Se connecter</button>
+            <p><a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a></p>
+            <p>Pas encore inscrit(e) ? <a href="{{ path('app_register') }}">S'inscrire</a></p>
+        </form>
+    </div>
+</div>
+{% endblock %}

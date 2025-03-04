@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Politique de confidentialité{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Politique de confidentialité</h1>
+        <p class="text-muted">Dernière mise à jour : 4 mars 2025</p>
+
+        <h2 class="mt-4">Introduction</h2>
+        <p>Bienvenue sur mon blog d'artiste. Je m'engage à protéger votre vie privée et vos données personnelles. Cette politique de confidentialité explique comment je collecte, utilise et protège vos informations lorsque vous visitez mon site.</p>
+
+        <h2 class="mt-4">Collecte des données</h2>
+        <p>Je collecte les types d'informations suivants :</p>
+        <ul>
+            <li>Informations que vous me fournissez volontairement (ex : nom, email) via les formulaires de contact ou commentaires</li>
+            <li>Données de navigation collectées automatiquement (ex : adresse IP, pages visitées)</li>
+            <li>Cookies pour améliorer votre expérience sur le site</li>
+        </ul>
+
+        <h2 class="mt-4">Utilisation des données</h2>
+        <p>J'utilise vos données pour :</p>
+        <ul>
+            <li>Répondre à vos demandes et commentaires</li>
+            <li>Améliorer mon site et son contenu</li>
+            <li>Analyser le trafic et l'utilisation du site</li>
+            <li>Envoyer occasionnellement des newsletters si vous y avez consenti</li>
+        </ul>
+
+        <h2 class="mt-4">Protection des données</h2>
+        <p>Je m'engage à protéger vos données en :</p>
+        <ul>
+            <li>Limitant l'accès aux seules personnes autorisées</li>
+            <li>Utilisant des mesures de sécurité techniques appropriées</li>
+            <li>Ne conservant vos données que le temps nécessaire</li>
+        </ul>
+
+        <h2 class="mt-4">Vos droits</h2>
+        <p>Vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-moi via le formulaire de contact.</p>
+
+        <h2 class="mt-4">Modifications</h2>
+        <p>Je me réserve le droit de modifier cette politique. Toute modification sera publiée sur cette page.</p>
+
+        <h2 class="mt-4">Contact</h2>
+        <p>Pour toute question concernant cette politique, contactez-moi via le formulaire de contact du site.</p>
+
+        <div class="mt-5">
+            <a href="{{ path('app_contact') }}" class="btn btn-primary">Formulaire de contact</a>
+            <a href="{{ app.request.headers.get('referer') }}" class="btn btn-secondary ml-2">Retour à la page précédente</a>
+        </div>
+    </div>
+{% endblock %}

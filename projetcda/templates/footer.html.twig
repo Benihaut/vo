@@ -1,0 +1,56 @@
+<footer class="bg-body-tertiary text-center text-lg-start mt-5">
+  <div class="container p-4">
+    <div class="row">
+      <!-- Section "Nous contacter" -->
+      <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">Nous contacter</h5>
+        <ul class="list-unstyled mb-0">
+          <li>
+            <a href="{{ path('app_contact') }}" class="text-dark">Formulaire de contact</a>
+          </li>
+          <li>
+            <p class="text-dark mb-0">Email : benihaut@gmail.com</p>
+          </li>
+          <li>
+            <p class="text-dark">Téléphone : +33 1 23 45 67 89</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Section "Mentions légales" -->
+      <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">Mentions légales</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="{{ path('app_mentions_legales') }}" class="text-dark">Consulter les mentions légales</a>
+          </li>
+          <li>
+            <a href="{{ path('app_privacy_policy') }}" class="text-dark">Politique de confidentialité</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Section Réseaux sociaux -->
+      <div class="col-lg-4 col-md-12 mb-4 mb-md-0 text-center">
+        <h5 class="text-uppercase">Suivez-nous</h5>
+        <a href="https://facebook.com" target="_blank" class="btn btn-outline-primary btn-sm m-1">
+          <i class="bi bi-facebook"></i> Facebook
+        </a>
+        <a href="https://twitter.com" target="_blank" class="btn btn-outline-info btn-sm m-1">
+          <i class="bi bi-twitter"></i> Twitter
+        </a>
+        <a href="https://www.instagram.com/benyo_benihaut/" target="_blank" class="btn btn-outline-danger btn-sm m-1">
+          <i class="bi bi-instagram"></i> Instagram
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="btn btn-outline-primary btn-sm m-1">
+          <i class="bi bi-linkedin"></i> LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section Copyright -->
+  <div class="text-center p-3 bg-light">
+    © {{ "now"|date("Y") }} Bénihaut
+  </div>
+</footer>

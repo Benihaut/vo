@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Catégories{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="mb-4">Catégories</h1>
+
+    <div class="category-list">
+        {% for category in categories %}
+            <div class="category-block mb-3">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <h3>{{ category.nomcategory }}</h3>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <small class="text-muted">ID: {{ category.id }}</small>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{ path('app_category_articles', {'id': category.id}) }}" class="btn btn-primary">Voir les articles</a>
+                    </div>
+                    <div class="col-md-4 text-md-end">
+                        <a href="{{ path('app_category_show', {'id': category.id}) }}" class="btn btn-info">Détails</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-warning">Éditer</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-center text-muted">Aucune catégorie trouvée</p>
+        {% endfor %}
+    </div>
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="text-center mt-4">
+        <a href="{{ path('app_category_new') }}" class="btn btn-success">Créer une nouvelle catégorie</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

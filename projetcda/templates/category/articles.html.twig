@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles de {{ category.nomcategory }}{% endblock %}
+
+{% block body %}
+    <h1>Articles de la catégorie : {{ category.nomcategory }}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                {% if is_granted('ROLE_ADMIN') %}
+                <th>Id</th>
+                {% endif %}
+                <th>Titre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                {% if is_granted('ROLE_ADMIN') %}
+                <td>{{ article.id }}</td>
+                {% endif %}
+                <td>{{ article.titre }}</td>
+                <td>
+                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun article dans cette catégorie</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_category_index') }}">Retour à la liste des catégories</a>
+{% endblock %}

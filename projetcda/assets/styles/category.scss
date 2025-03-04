@@ -1,0 +1,18 @@
+.category-list {
+  .category-block {
+    background-color: #448e9f;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
+    }
+
+    h3 {
+      margin-bottom: 0.25rem;
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h1 class="mb-4 text-center">{{ article.titre }}</h1>
+
+                {% if article.image is defined and article.image is not null %}
+                    <div class="text-center mb-4">
+                        <img src="{{ asset('uploads/articles/' ~ article.image) }}" 
+                             srcset="{{ asset('uploads/articles/' ~ article.image) }} 1x,
+                                     {{ asset('uploads/articles/' ~ article.image) }} 2x"
+                             sizes="(max-width: 768px) 100vw, 50vw"
+                             alt="{{ article.titre }}"
+                             class="img-fluid rounded">
+                    </div>
+                {% else %}
+                    <p class="text-center text-muted mb-4">Pas d'image disponible</p>
+                {% endif %}
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <table class="table table-borderless">
+                            <tbody>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                <tr>
+                                    <th class="w-25">ID</th>
+                                    <td>{{ article.id }}</td>
+                                </tr>
+                                {% endif %}
+                                <tr>
+                                    <th>Auteur</th>
+                                    <td>{{ article.auteur }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Date</th>
+                                    <td>{{ article.datearticle ? article.datearticle|date('d/m/Y H:i') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Contenu</th>
+                                    <td>{{ article.contenue }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {# Section Commentaires #}
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Commentaires</h3>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for commentaire in commentaires %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    {{ commentaire.contenu }} 
+                                    <small class="text-muted">
+                                        ({{ commentaire.datecommentaire|date('d-m-Y') }})
+                                    </small>
+                                </div>
+                                {% if is_granted('ROLE_USER') %}
+                                    <form method="post" action="{{ path('app_article_comment_delete', {'id': article.id, 'commentId': commentaire.id}) }}" class="ms-2">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete-comment' ~ commentaire.id) }}">
+                                        <button type="submit" 
+                                                class="btn btn-sm btn-danger" 
+                                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">
+                                            <i class="bi bi-trash"></i> <!-- Icône de suppression -->
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </li>
+                        {% else %}
+                            <li class="list-group-item text-center text-muted">
+                                Aucun commentaire
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                {# Formulaire Ajout Commentaire #}
+                <div class="card mb-4">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="mb-0">Ajouter un commentaire</h3>
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(commentForm, {'attr': {'class': 'needs-validation'}}) }}
+                            <div class="mb-3">
+                                {{ form_widget(commentForm, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-send"></i> Envoyer
+                            </button>
+                        {{ form_end(commentForm) }}
+                    </div>
+                </div>
+
+                {# Actions #}
+                <div class="d-flex justify-content-between">
+                    <a href="{{ path('app_article_index') }}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Retour à la liste
+                    </a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_article_edit', {'id': article.id}) }}" 
+                           class="btn btn-warning">
+                            <i class="bi bi-pencil"></i> Éditer
+                        </a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

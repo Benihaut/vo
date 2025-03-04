@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions Légales{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Mentions Légales</h1>
+
+    <h2>Identité de l'éditeur</h2>
+    <p>
+        Le site <strong>{{ app.request.host }}</strong> est édité par <strong>Nom de l'artiste</strong>, 
+        domicilié à <strong>Adresse de l'artiste</strong>, France.
+    </p>
+    <p>
+        Email : <a href="mailto:contact@votre-site.com">benihautt@gmail.com</a><br>
+        Téléphone : +33 1 23 45 67 89
+    </p>
+
+    <h2>Hébergement</h2>
+    <p>
+        Ce site est hébergé par Microsoft Azure, situé en France. 
+        Pour plus d'informations, vous pouvez consulter le site de Microsoft Azure : 
+        <a href="https://azure.microsoft.com/fr-fr/" target="_blank">azure.microsoft.com</a>.
+    </p>
+    <p>
+        Adresse de l'hébergeur :<br>
+        Microsoft Ireland Operations Ltd<br>
+        Atrium Building Block B<br>
+        Carmanhall Road Sandyford<br>
+        Industrial Estate Dublin 18, Ireland<br>
+        Tél. : +353 1850 940 940
+    </p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>
+        Tous les contenus présents sur ce site, y compris les textes, images, graphismes, logos, et vidéos, 
+        sont la propriété de <strong>Nom de l'artiste</strong> ou de tiers ayant autorisé leur utilisation. 
+        Toute reproduction ou représentation totale ou partielle de ce site est interdite sans autorisation préalable.
+    </p>
+
+    <h2>Données personnelles</h2>
+    <p>
+        Les données personnelles collectées sur ce site sont traitées conformément à la législation en vigueur. 
+        Vous disposez d'un droit d'accès, de rectification et de suppression des données vous concernant. 
+        Pour exercer ces droits, veuillez me contacter via le formulaire de contact.
+    </p>
+
+    <h2>Modifications des mentions légales</h2>
+    <p>
+        Je me réserve le droit de modifier ces mentions légales à tout moment. Les utilisateurs seront informés des changements sur cette page.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+        Pour toute question concernant ces mentions légales, veuillez me contacter à l'adresse email mentionnée ci-dessus.
+    </p>
+</div>
+{% endblock %}
