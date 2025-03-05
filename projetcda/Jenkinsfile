@@ -6,6 +6,7 @@ pipeline {
         GIT_BRANCH = "main"
         DEPLOY_DIR = "web003"
         PROJECT_SUBFOLDER = "projetcda"
+        UPLOAD_DIR = "/var/www/html/${DEPLOY_DIR}/public/uploads/articles"
     }
 
     stages {
@@ -61,6 +62,22 @@ pipeline {
                 sh "mkdir -p /var/www/html/${DEPLOY_DIR}"
                 sh "cp -rT ${DEPLOY_DIR}/${PROJECT_SUBFOLDER} /var/www/html/${DEPLOY_DIR}"
                 sh "chmod -R 775 /var/www/html/${DEPLOY_DIR}/var"
+                
+                // Création et configuration du dossier d'upload
+                sh "mkdir -p ${UPLOAD_DIR}"
+                sh "chmod -R 775 ${UPLOAD_DIR}"
+                sh "chown -R www-data:www-data ${UPLOAD_DIR}"
+                
+                // Vérification de la création du dossier
+                sh "ls -l ${UPLOAD_DIR}"
+            }
+        }
+
+        stage('Vérification des permissions') {
+            steps {
+                sh "ls -l ${UPLOAD_DIR}"
+                sh "id www-data"
+                sh "groups www-data"
             }
         }
     }
@@ -74,3 +91,4 @@ pipeline {
         }
     }
 }
+
