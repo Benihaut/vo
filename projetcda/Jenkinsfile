@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -64,7 +65,6 @@ pipeline {
                 sh "chmod -R 775 /var/www/html/${DEPLOY_DIR}/var"
                 sh "mkdir -p ${UPLOAD_DIR}"
                 sh "chmod -R 775 ${UPLOAD_DIR}"
-                sh "sudo chown -R www-data:www-data ${UPLOAD_DIR}"
             }
         }
 
@@ -86,4 +86,6 @@ pipeline {
         }
     }
 }
+
+
 
