@@ -62,14 +62,9 @@ pipeline {
                 sh "mkdir -p /var/www/html/${DEPLOY_DIR}"
                 sh "cp -rT ${DEPLOY_DIR}/${PROJECT_SUBFOLDER} /var/www/html/${DEPLOY_DIR}"
                 sh "chmod -R 775 /var/www/html/${DEPLOY_DIR}/var"
-                
-                // Création et configuration du dossier d'upload
                 sh "mkdir -p ${UPLOAD_DIR}"
                 sh "chmod -R 775 ${UPLOAD_DIR}"
-                sh "chown -R www-data:www-data ${UPLOAD_DIR}"
-                
-                // Vérification de la création du dossier
-                sh "ls -l ${UPLOAD_DIR}"
+                sh "sudo chown -R www-data:www-data ${UPLOAD_DIR}"
             }
         }
 
